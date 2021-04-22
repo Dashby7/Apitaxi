@@ -1,0 +1,14 @@
+voir feuille jaune
+
++ ajouter crédits/ressources --
+
++ ajouter icone onglet --
+
+___
+
+réservations doublons --
+sécurité
+conventionné --
+Cadrage texte du début --
+Ajouter l'image taxi conventionné --
+Input disabled (desactiver input lieu de départ quand on est sur vers/de l'aéroport) --

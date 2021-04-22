@@ -1,0 +1,195 @@
+                                        $mail = 'abid.foued@gmail.com'; // Déclaration de l'adresse de destination.
+
+                                        if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui rencontrent des bogues.
+                                        {
+                                            $passage_ligne = "\r\n";
+                                        }
+                                        else
+                                        {
+                                            $passage_ligne = "\n";
+                                        }
+
+                                        //=====Déclaration des messages au format texte et au format HTML.
+                                        $message_txt = 'Vous avez une nouvelle réservation ! : '.$passage_ligne.''.$passage_ligne.
+                                                        'Réservation n° : '.$numres.''.$passage_ligne.''.$passage_ligne.
+                                                        ''.$trajet.''.$passage_ligne.''.$passage_ligne.
+                                                        'Nom : '.$nom.''.$passage_ligne.
+                                                        'Prénom : '.$prenom.''.$passage_ligne.
+                                                        'N° de téléphone : '.$numtel.''.$passage_ligne.
+                                                        'Adresse électronique : '.$email.''.$passage_ligne.
+                                                        'Nombre de passagers : '.$nom.''.$passage_ligne.
+                                                        'Lieu de départ : '.$nom.''.$passage_ligne.
+                                                        'Destination : '.$nom.''.$passage_ligne.
+                                                        'Date de départ : '.$datedep.' à '.$heuredep.''.$passage_ligne.'';
+
+                                        if ($dateret != '2019-01-01') {
+                                            $message_txt .= 'Date de retour : '.$dateret.' à '.$heureret.''.$passage_ligne.'';
+                                        }
+
+                                        if ($froulant == 1) {
+                                            $message_txt .= '/!\ Il y a une personne en fauteuil roulant parmi les passagers /!\ '.$passage_ligne.'';
+                                        }
+
+                                        if ($comments != '') {
+                                            $message_txt .= 'Commentaires : '.$comments.'';
+                                        }
+
+                                        //==========
+
+                                        $message_html = '<html class="htmlbody">
+                                                                <head>
+                                                                </head>
+
+                                                                <body class="bodymail">
+                                                                    <div class="corps">
+                                                                        <h1 class="titlemail">Vous avez une nouvelle réservation sur le site Apitaxi !</h1>
+                                                                        <br/>
+                                                                        <h2>N° de réservation : .'$numres'.</h2>
+
+                                                                        <p>
+                                                                        <span>'.$trajet.'</span>
+                                                                        </p>
+
+                                                                        <p>
+                                                                        <span><strong>Nom</strong></span> <span>'.$nom.'</span>
+                                                                        </p>
+
+                                                                        <p>
+                                                                        <span><strong>Prénom</strong></span> <span>'.$prenom.'</span>
+                                                                        </p>
+
+                                                                        <p>
+                                                                        <span><strong>N° de téléphone</strong></span> <span>'.$numtel.'</span>
+                                                                        </p>
+
+                                                                        <p>
+                                                                        <span><strong>E-mail</strong></span> <span>'.$email.'</span>
+                                                                        </p>
+
+                                                                        <p>
+                                                                        <span><strong>Nombre de passagers</strong></span> <span>'.$nbpassagers.'</span>
+                                                                        </p>
+
+                                                                        <p>
+                                                                        <span><strong>Lieu de départ</strong></span> <span>'.$depart.'</span>
+                                                                        </p>
+
+                                                                        <p>
+                                                                        <span><strong>Destination</strong></span> <span>'.$arrivee.'</span>
+                                                                        </p>
+
+                                                                        <p>
+                                                                        <span><strong>Date de départ</strong></span> <span>le '.$datedep.' à '.$heuredep.'</span>
+                                                                        </p>';
+
+                                                                        if ($dateret != '2019-01-01') {
+                                                                            $message_html .= '<p>
+                                                                                        <span><strong>Date de retour</strong></span> <span>le '.$dateret.' à '.$heureret.'</span>
+                                                                                        </p>';
+                                                                        }
+
+                                                                        if ($froulant == 1) {
+                                                                            $message_html .= '<p>
+                                                                                        <span><strong>Il y a une personne en fauteuil roulant parmi les passagers</strong>&nbsp <i class="icon fa-wheelchair"></i></span> 
+                                                                                        </p>';
+                                                                        }
+
+                                                                        if ($comments != '') {
+                                                                            $message_html .= '<p>
+                                                                                        <span><strong>Commentaires</strong></span> <span>'.$comments.'</span>
+                                                                                        </p>';
+                                                                        }
+
+                                        $message_html .=           '<br/>
+
+                                                                        <p class="bonneroute">Bonne route ! &nbsp &nbsp<i class="icon fa-smile-wink"></i></p>
+
+                                                                    </div>
+
+                                                                    <style>
+
+                                                                        .htmlbody, .bodymail {
+                                                                            width: 100%;
+                                                                            height : 100%;
+                                                                            padding : 0.5em;
+                                                                        }
+                                                                        .corps {
+                                                                            display: flex;
+                                                                            flex-direction :column;
+                                                                            justify-content: center;
+                                                                            background-color : #eae4d5;
+                                                                            color : #404040;
+                                                                            border : 1px solid #d3d3d3;
+                                                                            padding: 3em 3em;
+                                                                            height : 95%;
+                                                                            width:100%;
+                                                                            overflow: auto;
+                                                                        }
+
+                                                                        .corps p {
+                                                                            display: flex;
+                                                                            margin: 0;
+                                                                            padding : 0;
+                                                                            flex-direction: row;
+                                                                            justify-content: space-between;
+                                                                            font-size : 15pt;
+                                                                            font-family : \'Source Sans Pro\', Verdana, sans-serif;
+                                                                        }
+
+                                                                        .bonneroute, h1 {
+                                                                            justify-content: center;
+                                                                            text-align :center;
+                                                                            color : black;
+                                                                            font-size : 20pt;
+                                                                        }
+
+                                                                        .titlemail {
+                                                                            font-size : 25pt;
+                                                                            font-weight: 800;
+                                                                        }
+
+                                                                        .corps span {
+                                                                            display: inline-block;
+
+                                                                        }
+                                                                    </style>
+                                                                </body>
+                                                        </html>';
+                                        
+                                        //==========
+                                         
+                                        //=====Création de la boundary
+                                        $boundary = "-----=".md5(rand());
+                                        //==========
+                                         
+                                        //=====Définition du sujet.
+                                        $sujet = 'Nouvelle réservation n°'.$numres.'';
+                                        //=========
+                                         
+                                        //=====Création du header de l'e-mail.
+                                        $header = "From: \"Apitaxi Toulouse\"<apitqpfc@apitaxi-toulouse.yo.fr>".$passage_ligne;
+                                        $header.= "Reply-to: \"Apitaxi Toulouse\" <apitqpfc@apitaxi-toulouse.yo.fr>".$passage_ligne; 
+                                        $header.= "MIME-Version: 1.0".$passage_ligne;
+                                        $header.= "Content-Type: multipart/alternative;".$passage_ligne."boundary=\"$boundary\"".$passage_ligne;
+                                        //==========
+                                         
+                                        //=====Création du message.
+                                        $message = $passage_ligne."--".$boundary.$passage_ligne;
+                                        //=====Ajout du message au format texte.
+                                        $message.= "Content-Type: text/plain; charset=\"ISO-8859-1\"".$passage_ligne;
+                                        $message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
+                                        $message.= $passage_ligne.$message_txt.$passage_ligne;
+                                        //==========
+                                        $message.= $passage_ligne."--".$boundary.$passage_ligne;
+                                        //=====Ajout du message au format HTML
+                                        $message.= "Content-Type: text/html; charset=\"ISO-8859-1\"".$passage_ligne;
+                                        $message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
+                                        $message.= $passage_ligne.$message_html.$passage_ligne;
+                                        //==========
+                                        $message.= $passage_ligne."--".$boundary."--".$passage_ligne;
+                                        $message.= $passage_ligne."--".$boundary."--".$passage_ligne;
+                                        //==========
+                                         
+                                        //=====Envoi de l'e-mail.
+                                        mail($mail,$sujet,$message,$header);
+                                        //==========
